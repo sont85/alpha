@@ -1,3 +1,10 @@
+Clone Repo
+Cd into alpha folder
+npm install
+npm start
+localhost:3000
+
+
 MARVEL API
 developer.marvel.com
 public key

@@ -55,8 +55,10 @@ class App extends Component {
     }).then((response) => {
       console.log(response)
       if (response.data.data.results && response.data.data.results.length && response.data.data.results[0].name) {
+        const { path, extension } = response.data.data.results[0].thumbnail
         this.setState({
-          characterName: response.data.data.results[0].name
+          characterName: response.data.data.results[0].name,
+          imageUrl: `${path}/portrait_xlarge.${extension}`
         })
       }
     })
@@ -75,6 +77,8 @@ class App extends Component {
           style={{ backgroundColor: '#e6ceff' }}
           onChange={this.handleCharactersChange}
         />
+        <h1>{this.state.characterName}</h1>
+        <img src={this.state.imageUrl} />
         {this.state.characterList.map((character) => (
           <li>{character}</li>
         ))}

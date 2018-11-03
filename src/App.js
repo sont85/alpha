@@ -6,6 +6,7 @@ import { TextField, BottomNavigation, BottomNavigationAction } from '@material-u
 import md5 from 'md5';
 import { publicKey, privateKey } from './constants/apikeys'
 
+// TESTING
 const client = axios.create({
   baseURL: 'https://gateway.marvel.com:443/v1/public/',
   responseType: 'json',

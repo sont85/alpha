@@ -22,7 +22,8 @@ class App extends Component {
     super(props)
     this.state = {
       characterName: null,
-      characterList: []
+      characterList: [],
+      descriptionInfo: null
     }
   }
   componentDidMount() {
@@ -43,6 +44,7 @@ class App extends Component {
       })
     })
   }
+
   fetchCharacters(name) {
     const ts = new Date().getTime()
     const hash = md5(`${ts}${privateKey}${publicKey}`)
@@ -54,10 +56,11 @@ class App extends Component {
       }
     }).then((response) => {
       console.log(response)
-      if (response.data.data.results && response.data.data.results.length && response.data.data.results[0].name) {
+      if (response.data.data.results && response.data.data.results.length && response.data.data.results[0].name && response.data.data.results[0].description) {
         const { path, extension } = response.data.data.results[0].thumbnail
         this.setState({
           characterName: response.data.data.results[0].name,
+          descriptionInfo: response.data.data.results[0].description,
           imageUrl: `${path}/portrait_xlarge.${extension}`
         })
       }
@@ -67,6 +70,13 @@ class App extends Component {
     const name = e.target.value
     this.fetchCharacters(name)
   }
+
+// ----description
+  handleDescriptionChange = (e) => {
+    const description = e.target.value
+    this.fetchDescription(description)
+  }
+
   render() {
     return (
       <div>
@@ -79,6 +89,8 @@ class App extends Component {
         />
         <h1>{this.state.characterName}</h1>
         <img src={this.state.imageUrl} />
+        <p>{this.state.descriptionInfo}</p>
+
         {this.state.characterList.map((character) => (
           <li>{character}</li>
         ))}

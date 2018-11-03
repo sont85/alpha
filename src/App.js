@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
-import { TextField, BottomNavigation, BottomNavigationAction } from '@material-ui/core';cd
+import { TextField, BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import md5 from 'md5';
 import { publicKey, privateKey } from './constants/apikeys'
 
